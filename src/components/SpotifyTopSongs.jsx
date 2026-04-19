@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./SpotifyTopSongs.css";
 
-const API_URL = "http://localhost:8000";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 const PLACEHOLDER_IMG =
   "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&q=80";
 
