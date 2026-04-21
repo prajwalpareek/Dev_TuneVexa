@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./SpotifyTopSongs.css";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
@@ -56,6 +56,18 @@ export default function SpotifyTopSongs() {
   const [error, setError] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
   const [search, setSearch] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -101,7 +113,23 @@ export default function SpotifyTopSongs() {
           </svg>
           <span className="spotify-brand">TuneVexa</span>
         </div>
-        <h1 className="spotify-header-title">Top Streamed Songs Today</h1>
+        <div className="hamburger-menu" ref={menuRef}>
+          <button
+            className="hamburger-btn"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+          {menuOpen && (
+            <div className="hamburger-dropdown">
+              <div className="hamburger-item disabled">3 Billion Club</div>
+              <div className="hamburger-item disabled">2 Billion Club</div>
+            </div>
+          )}
+        </div>
       </header>
 
       <main className="spotify-main">
