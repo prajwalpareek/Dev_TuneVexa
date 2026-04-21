@@ -7,7 +7,7 @@ load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
-TABLE = "spotify_charts"
+TABLE = "spotify_charts_dev"
 
 
 def _headers() -> dict:
