@@ -24,8 +24,12 @@ ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     "http://localhost:5174",
     "http://127.0.0.1:5174",
+    "http://localhost:5175",
+    "http://127.0.0.1:5175",
     "https://tunevexa-dev.vercel.app",
     "https://dev.tunevexa.com",
+    "https://tunevexa.com",
+    "https://www.tunevexa.com",
 ]
 _extra = os.getenv("EXTRA_ORIGINS", "")
 if _extra:
